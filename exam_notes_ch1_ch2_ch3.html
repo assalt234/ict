@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>C# Exam Notes – Ch.1 · Ch.2 · Ch.3</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: system-ui, -apple-system, sans-serif; font-size:13px; background:#f1f5f9; color:#334155; line-height:1.5; }
+
+.cover { background:linear-gradient(135deg,#7b0000,#b91c1c); color:white; text-align:center; padding:50px 40px; }
+.cover h1 { font-size:36px; font-weight:800; margin-bottom:10px; }
+.cover p { font-size:13px; color:#fca5a5; margin-bottom:4px; }
+.cover .tags { margin-top:16px; font-size:12px; color:#fde68a; }
+
+.page { max-width:900px; margin:24px auto; padding:0 16px; }
+
+.ch { background:white; border-radius:12px; box-shadow:0 2px 12px rgba(0,0,0,.07); margin-bottom:20px; overflow:hidden; }
+
+.ch-bar { display:flex; align-items:center; gap:12px; padding:12px 18px; }
+.ch-bar .num { width:40px; height:40px; border-radius:8px; background:rgba(255,255,255,.2); display:flex; align-items:center; justify-content:center; font-size:18px; font-weight:800; color:white; flex-shrink:0; }
+.ch-bar h2 { color:white; font-size:16px; }
+.ch-bar p  { color:rgba(255,255,255,.75); font-size:11px; }
+.ch1 .ch-bar { background:linear-gradient(135deg,#7b0000,#b91c1c); }
+.ch2 .ch-bar { background:linear-gradient(135deg,#1e3a8a,#1d4ed8); }
+.ch3 .ch-bar { background:linear-gradient(135deg,#14532d,#15803d); }
+
+.body { padding:16px 18px; }
+
+.sec-title { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.7px; padding-bottom:4px; margin-bottom:8px; margin-top:14px; border-bottom:2px solid; }
+.ch1 .sec-title { color:#b91c1c; border-color:#fecaca; }
+.ch2 .sec-title { color:#1d4ed8; border-color:#bfdbfe; }
+.ch3 .sec-title { color:#15803d; border-color:#bbf7d0; }
+
+/* Two-column grid */
+.grid2 { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:10px; }
+.grid3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; margin-bottom:10px; }
+.grid4 { display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:8px; margin-bottom:10px; }
+
+/* KV card */
+.kv { border-radius:6px; padding:8px 10px; font-size:12px; }
+.ch1 .kv { background:#fff7f7; border-left:3px solid #b91c1c; }
+.ch2 .kv { background:#eff6ff; border-left:3px solid #1d4ed8; }
+.ch3 .kv { background:#f0fdf4; border-left:3px solid #15803d; }
+.kv strong { display:block; font-size:11px; margin-bottom:2px; }
+.ch1 .kv strong { color:#b91c1c; }
+.ch2 .kv strong { color:#1d4ed8; }
+.ch3 .kv strong { color:#15803d; }
+
+/* Data table */
+table { width:100%; border-collapse:collapse; font-size:12px; margin-bottom:10px; border-radius:6px; overflow:hidden; }
+thead tr { color:white; }
+.ch1 thead tr { background:#b91c1c; }
+.ch2 thead tr { background:#1d4ed8; }
+.ch3 thead tr { background:#15803d; }
+th, td { padding:5px 8px; text-align:left; border-bottom:1px solid #e2e8f0; vertical-align:top; }
+tbody tr:nth-child(even) { background:#f8fafc; }
+tbody tr:last-child td { border-bottom:none; }
+
+/* Code block */
+pre { background:#0f172a; color:#dde4ee; font-family:'Fira Code',Consolas,monospace; font-size:11.5px; line-height:1.6; padding:10px 12px; border-radius:6px; overflow-x:auto; margin-bottom:10px; white-space:pre-wrap; }
+
+/* Note */
+.note { border-radius:6px; padding:7px 10px; font-size:12px; margin-bottom:10px; border-left:3px solid; }
+.note.info  { background:#eff6ff; border-color:#2563eb; }
+.note.warn  { background:#fffbeb; border-color:#f59e0b; }
+.note.err   { background:#fef2f2; border-color:#ef4444; }
+.note.ok    { background:#f0fdf4; border-color:#16a34a; }
+
+/* Bullets */
+ul.bul { list-style:none; font-size:12px; margin-bottom:10px; }
+ul.bul li { padding:2px 0 2px 14px; position:relative; }
+ul.bul li::before { content:'▸'; position:absolute; left:0; font-size:10px; }
+.ch1 ul.bul li::before { color:#b91c1c; }
+.ch2 ul.bul li::before { color:#1d4ed8; }
+.ch3 ul.bul li::before { color:#15803d; }
+
+code { background:#e2e8f0; padding:1px 5px; border-radius:3px; font-family:Consolas,monospace; font-size:11px; }
+
+.mt { margin-top:10px; }
+@media(max-width:600px){ .grid2,.grid3,.grid4{ grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <h1>C# Exam Notes</h1>
+  <p>Royal Guard of Oman Technical College</p>
+  <p>Computer System Principles and Practice — BTEC National Diploma · 2025/2026</p>
+  <div class="tags">Chapter 1: Introduction to C#  ·  Chapter 2: Operators  ·  Chapter 3: Selection</div>
+</div>
+
+<div class="page">
+
+<!-- ════ CHAPTER 1 ════ -->
+<div class="ch ch1">
+  <div class="ch-bar">
+    <div class="num">1</div>
+    <div><h2>Introduction to C#</h2><p>Syntax · Variables · Constants · Input · Comments</p></div>
+  </div>
+  <div class="body">
+
+    <div class="sec-title">What is C#?</div>
+    <div class="grid3">
+      <div class="kv"><strong>Pronunciation</strong>"C-Sharp" — by Microsoft, runs on .NET Framework.</div>
+      <div class="kv"><strong>Family</strong>From C family. Similar to C++ and Java. Object-Oriented (OOP).</div>
+      <div class="kv"><strong>Used For</strong>Mobile, desktop, web apps, games, databases.</div>
+    </div>
+
+    <div class="sec-title">Basic Program Structure</div>
+    <div class="grid2">
+<pre>using System;
+namespace HelloWorld {
+  class Program {
+    static void Main(string[] args) {
+      Console.WriteLine("Hello World!");
+    }
+  }
+}</pre>
+      <ul class="bul">
+        <li><strong>using System</strong> — access built-in classes (Console)</li>
+        <li><strong>namespace</strong> — organises your code</li>
+        <li><strong>class</strong> — all code must be inside a class</li>
+        <li><strong>Main()</strong> — entry point, runs first</li>
+        <li>Statements end with a <strong>semicolon ;</strong></li>
+        <li>C# is <strong>case-sensitive</strong>: MyVar ≠ myvar</li>
+      </ul>
+    </div>
+
+    <div class="sec-title">Output & Input Methods</div>
+    <div class="grid2">
+      <table>
+        <thead><tr><th>Method</th><th>Behaviour</th></tr></thead>
+        <tbody>
+          <tr><td><code>Console.WriteLine()</code></td><td>Prints + new line</td></tr>
+          <tr><td><code>Console.Write()</code></td><td>Prints, same line</td></tr>
+          <tr><td><code>Console.ReadLine()</code></td><td>Gets input (returns string)</td></tr>
+          <tr><td><code>Convert.ToInt32()</code></td><td>Converts string → int</td></tr>
+        </tbody>
+      </table>
+<pre>Console.WriteLine("Enter name:");
+string n = Console.ReadLine();
+
+// Must convert for numbers:
+int age = Convert.ToInt32(
+          Console.ReadLine());</pre>
+    </div>
+
+    <div class="sec-title">Variables & Data Types</div>
+    <table>
+      <thead><tr><th>Type</th><th>Stores</th><th>Example</th></tr></thead>
+      <tbody>
+        <tr><td><code>int</code></td><td>Whole numbers</td><td><code>int age = 20;</code></td></tr>
+        <tr><td><code>double</code></td><td>Decimal numbers</td><td><code>double pi = 3.14;</code></td></tr>
+        <tr><td><code>char</code></td><td>Single character (single quotes)</td><td><code>char g = 'A';</code></td></tr>
+        <tr><td><code>string</code></td><td>Text (double quotes)</td><td><code>string name = "Ali";</code></td></tr>
+        <tr><td><code>bool</code></td><td>true or false</td><td><code>bool pass = true;</code></td></tr>
+      </tbody>
+    </table>
+    <div class="note warn">✏ Syntax: <code>type variableName = value;</code> → e.g. <code>int score = 95;</code></div>
+
+    <div class="sec-title">Constants & Identifier Rules</div>
+    <div class="grid2">
+      <div>
+        <div class="kv"><strong>Variable vs const</strong>Variable: value can change. <code>const</code>: value is fixed, read-only, must assign at declaration.</div>
+<pre class="mt">const int MAX = 100;   // OK
+MAX = 200;             // ERROR</pre>
+        <div class="note err">⚠ const must be assigned at declaration — cannot declare it empty.</div>
+      </div>
+      <ul class="bul">
+        <li>Letters, digits, underscore _ only — no spaces</li>
+        <li>Must <strong>begin with a letter</strong> (not digit)</li>
+        <li>Case-sensitive: myVar ≠ MyVar</li>
+        <li>No reserved keywords: int, double, string…</li>
+        <li>Use descriptive names: <code>minutesPerHour</code></li>
+      </ul>
+    </div>
+
+    <div class="sec-title">Comments</div>
+<pre>// Single-line comment
+/* Multi-line comment — spans multiple lines */
+Console.WriteLine("Hi"); // inline comment</pre>
+
+  </div>
+</div>
+
+<!-- ════ CHAPTER 2 ════ -->
+<div class="ch ch2">
+  <div class="ch-bar">
+    <div class="num">2</div>
+    <div><h2>Operators</h2><p>Arithmetic · Relational · Logical</p></div>
+  </div>
+  <div class="body">
+
+    <div class="sec-title">Arithmetic Operators  (A=10, B=20)</div>
+    <table>
+      <thead><tr><th>Op</th><th>Name</th><th>Example</th><th>Result</th></tr></thead>
+      <tbody>
+        <tr><td><code>+</code></td><td>Addition</td><td>A+B</td><td>30</td></tr>
+        <tr><td><code>-</code></td><td>Subtraction</td><td>A-B</td><td>-10</td></tr>
+        <tr><td><code>*</code></td><td>Multiplication</td><td>A*B</td><td>200</td></tr>
+        <tr><td><code>/</code></td><td>Division</td><td>B/A</td><td>2</td></tr>
+        <tr><td><code>%</code></td><td>Modulus (remainder)</td><td>B%A</td><td>0</td></tr>
+        <tr><td><code>++</code></td><td>Increment +1</td><td>A++</td><td>11</td></tr>
+        <tr><td><code>--</code></td><td>Decrement -1</td><td>A--</td><td>9</td></tr>
+      </tbody>
+    </table>
+
+    <div class="sec-title">Relational & Logical Operators</div>
+    <div class="grid2">
+      <div>
+        <table>
+          <thead><tr><th>Op</th><th>Meaning</th><th>A=10,B=20</th></tr></thead>
+          <tbody>
+            <tr><td><code>==</code></td><td>Equal to</td><td>false</td></tr>
+            <tr><td><code>!=</code></td><td>Not equal</td><td>true</td></tr>
+            <tr><td><code>&gt;</code></td><td>Greater than</td><td>false</td></tr>
+            <tr><td><code>&lt;</code></td><td>Less than</td><td>true</td></tr>
+            <tr><td><code>&gt;=</code></td><td>Greater or equal</td><td>false</td></tr>
+            <tr><td><code>&lt;=</code></td><td>Less or equal</td><td>true</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <table>
+          <thead><tr><th>Op</th><th>Name</th><th>A=T,B=F</th></tr></thead>
+          <tbody>
+            <tr><td><code>&amp;&amp;</code></td><td>AND — both true</td><td>false</td></tr>
+            <tr><td><code>||</code></td><td>OR — one true</td><td>true</td></tr>
+            <tr><td><code>!</code></td><td>NOT — reverses</td><td>true</td></tr>
+          </tbody>
+        </table>
+        <div class="note warn">✏ <strong>==</strong> compares · <strong>=</strong> assigns · Never mix them!</div>
+        <div class="note info" style="margin-top:6px">T&amp;&amp;T=T · T&amp;&amp;F=F · F&amp;&amp;F=F<br>T||T=T · T||F=T · F||F=F</div>
+      </div>
+    </div>
+
+    <div class="sec-title">Quick Example</div>
+<pre>int a=10, b=20;
+Console.WriteLine(a+b);           // 30  — Addition
+Console.WriteLine(b%a);           // 0   — Modulus
+Console.WriteLine(a > b);         // False
+Console.WriteLine(a != b);        // True
+Console.WriteLine(a==10 &amp;&amp; b==20); // True — Logical AND</pre>
+
+  </div>
+</div>
+
+<!-- ════ CHAPTER 3 ════ -->
+<div class="ch ch3">
+  <div class="ch-bar">
+    <div class="num">3</div>
+    <div><h2>Selection</h2><p>if · else · else if · switch</p></div>
+  </div>
+  <div class="body">
+
+    <div class="sec-title">Overview</div>
+    <div class="grid4">
+      <div class="kv"><strong>if</strong>Run block if condition is TRUE.</div>
+      <div class="kv"><strong>else</strong>Run block if condition is FALSE.</div>
+      <div class="kv"><strong>else if</strong>Test new condition when first is false.</div>
+      <div class="kv"><strong>switch</strong>Match value against multiple cases.</div>
+    </div>
+
+    <div class="sec-title">if Statement  &  if/else Statement</div>
+    <div class="grid2">
+<pre>// if syntax
+if (condition)
+{
+    // runs if TRUE
+}
+
+// if/else syntax
+if (condition)
+{ /* TRUE */ }
+else
+{ /* FALSE */ }</pre>
+<pre>// if example
+int x=20, y=18;
+if (x > y)
+{
+    Console.WriteLine("x > y");
+}
+// Output: x > y
+
+// if/else example
+int time=20;
+if (time &lt; 18) { Console.WriteLine("Good day."); }
+else           { Console.WriteLine("Good evening."); }
+// Output: Good evening.</pre>
+    </div>
+
+    <div class="sec-title">else if Statement</div>
+    <div class="grid2">
+<pre>// Syntax
+if (cond1)      { /* cond1 true */ }
+else if (cond2) { /* cond2 true */ }
+else            { /* both false */ }</pre>
+<pre>int time=22;
+if (time &lt; 10)       { WriteLine("Good morning."); }
+else if (time &lt; 20)  { WriteLine("Good day.");     }
+else                 { WriteLine("Good evening.");  }
+// Output: Good evening.</pre>
+    </div>
+    <div class="note info">ℹ Conditions tested top-to-bottom. Once one is true, the rest are skipped.</div>
+
+    <div class="sec-title">switch Statement</div>
+    <div class="grid2">
+<pre>switch(expression)
+{
+    case x:
+        // code
+        break;
+    case y:
+        // code
+        break;
+    default:
+        // fallback
+        break;
+}</pre>
+<pre>int day=4;
+switch(day)
+{
+    case 1: Console.WriteLine("Mon"); break;
+    case 2: Console.WriteLine("Tue"); break;
+    case 3: Console.WriteLine("Wed"); break;
+    case 4: Console.WriteLine("Thu"); break;
+    default: Console.WriteLine("?"); break;
+}
+// Output: Thu</pre>
+    </div>
+    <table>
+      <thead><tr><th>Keyword</th><th>Purpose</th></tr></thead>
+      <tbody>
+        <tr><td><code>break</code></td><td>Exits the switch block after a match. Without it, code falls through to the next case.</td></tr>
+        <tr><td><code>default</code></td><td>Optional. Runs if no case matches — like a final else.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="sec-title">if vs switch  &  Key Reminders</div>
+    <div class="grid2">
+      <table>
+        <thead><tr><th>Use if/else when…</th><th>Use switch when…</th></tr></thead>
+        <tbody>
+          <tr><td>Checking a range (score &gt; 90)</td><td>Exact value match</td></tr>
+          <tr><td>Two outcomes (true/false)</td><td>Many discrete values</td></tr>
+          <tr><td>Complex boolean conditions</td><td>Cleaner than many else if</td></tr>
+        </tbody>
+      </table>
+      <ul class="bul">
+        <li><strong>==</strong> compares · <strong>=</strong> assigns — never mix</li>
+        <li><strong>else if</strong> only runs if prior conditions are false</li>
+        <li>Every <strong>case</strong> in switch needs a <strong>break;</strong></li>
+        <li><strong>default</strong> is optional but good practice</li>
+        <li>Conditions must be <strong>true</strong> or <strong>false</strong></li>
+        <li>Always use <strong>{}</strong> to define each block body</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<p style="text-align:center;color:#94a3b8;font-size:11px;padding:12px 0">
+  Royal Guard of Oman Technical College · C# Exam Notes · 2025/2026
+</p>
+</div>
+</body>
+</html>
